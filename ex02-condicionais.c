@@ -57,10 +57,10 @@ int main () {
     double altura;
     double imc;
 
-    printf("Digite seu peso (kg): ");
+    printf("Digite seu peso (em kg): ");
     scanf("%lf", &peso); 
 
-    printf("Digite sua altura (m): ");
+    printf("Digite sua altura (em metros): ");
     scanf("%lf", &altura);
 
     imc = peso / (altura * altura); 
