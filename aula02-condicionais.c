@@ -12,6 +12,7 @@
 //    return 0;
 //}
 
+// porcentagem
 int main () {
     float valor_antigo;
     float valor_novo;
@@ -30,7 +31,7 @@ int main () {
     return 0;
 }
 
-// else e if 
+// else e if  
 #include <stdio.h>
 
 int main () {
@@ -73,7 +74,7 @@ int main () {
         printf("Obesidade grau I\n");
     } else if (imc >= 25.0 && imc < 30.0) {  
         printf("Sobrepeso\n");
-    } else if (imc >= 18.5 && imc < 25.0) {  
+    } else if (imc >= 18.5 && imc <= 25.0) {  
         printf("Peso saudável\n");
     } else {
         printf("Abaixo do peso\n");  
