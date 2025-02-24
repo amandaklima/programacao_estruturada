@@ -1,28 +1,35 @@
 
-#include <stdio.h>
-#define MAX_REPETCOES 5
-
 // variaveis camel case variavelTipo tudo junto 
 //constante #define VARIAVEL_TIPO maiusculo e _
 
+#include <stdio.h>
+
+#define MAX_REPET 5
+
 int main() {
-    int num1, num2;
-    printf("Digite um número inteiro:");
-    scanf("%d", &num1);
+  int num1, num2, qtdRepet = 1;
+  printf("Digite um numero inteiro: ");
+  scanf("%d", &num1);
 
-    printf("Digite um número inteiro maior que %d\n", num1);
+  printf("Digite um numero inteiro maior que %d: ", num1);
+  scanf("%d", &num2);
+
+  // estrutura do while
+
+
+  while (num2 <= num1 && qtdRepet <= MAX_REPET) {
+    qtdRepet = qtdRepet + 1;
+    printf("Valor digitado e invalido!\n");
+    printf("Digite um numero inteiro maior que %d\n", num1);
     scanf("%d", &num2);
+  }
 
-    // estrutura do while
-    while (num2 <= num1 && quantidadeRepeticoes <=MAX_REPETCOES){
-        quantidadeRepeticoes = quantidadeRepeticoes +1;
-        
-        printf("Valor digitado é invalido! %d\n", num1);
-        printf("Digite um número inteiro maior que %d\n", num1);
-        scanf("%d", &num2);
-    }
-    if ( quantidadeRepeticoes <=MAX_REPETCOES){
-        printf("Existem %d valores no intervalo de \n", num1);
-
-    return 0;
+  if (qtdRepet <= MAX_REPET) {
+    printf("Existem %d valores no intervalo de %d a %d\n", 
+      num2 - num1 + 1, num1, num2);
+      return 0;
+  } else {
+    printf("Estorou a quantidade de repeticoes!\n");
+    return 1;
+  }
 }
