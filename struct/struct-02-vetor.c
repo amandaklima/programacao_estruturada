@@ -41,10 +41,10 @@ int encontrarPessoaMaisPesada(struct Pessoa vp[], int tam) {
 }
 
 double calcularMediaIdadeIMCnormal(struct Pessoa vp[], int tam) {
-    int cont = 0;
-    int somaIdade = 0;
+    int cont = 0, somaIdade = 0;
+    double mediaIdades = 0.0 , imc;
     for (int i = 0; i < tam; i++) {
-        double imc = calcularIMC(vp[i]);
+        imc = calcularIMC(vp[i]); // Apenas atribuição, sem redeclaração
         if (imc >= 18.5 && imc <= 24.9) {
             somaIdade += vp[i].idade;
             cont++;
@@ -63,7 +63,7 @@ int main() {
   printf("\n\n");
 
   for (int i = 0; i < QTD_PESSOAS; i += 1) {
-    printf("----- Impressão dados da Pessoa %d: ", i + 1);
+    printf("Impressão dados da Pessoa %d: ", i + 1);
     imprimirPessoa(pessoas[i]);
   }
 
