@@ -85,7 +85,7 @@ void cadastrarProduto() {
     printf("Descricao: ");
     getchar(); 
     fgets(p.descricao, MAX_DESC, stdin);
-    p.descricao[strcspn(p.descricao, "\n")] = 0; // remover \n
+    p.descricao[strcspn(p.descricao, "\n")] = 0; 
 
     printf("Preco: ");
     scanf("%f", &p.preco);
@@ -200,7 +200,7 @@ void removerProduto() {
     printf("Produto removido com sucesso.\n");
 }
 
-// ---------- Funções vendas ----------
+
 
 void cadastrarVenda() {
     FILE *fp = fopen("venda.bin", "ab");
@@ -275,7 +275,6 @@ void listarVendas() {
 }
 
 
-// --------- Funções auxiliares ---------
 
 Produto buscarProdutoPorId(int id) {
     Produto p = {0};
@@ -291,7 +290,7 @@ Produto buscarProdutoPorId(int id) {
 
     fclose(fp);
     Produto vazio = {0};
-    return vazio; // Produto não encontrado
+    return vazio; 
 }
 
 int existeProduto(int id) {
