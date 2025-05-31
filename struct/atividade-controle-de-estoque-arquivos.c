@@ -7,7 +7,7 @@
 
 typedef struct {
     int id;
-    char descricao[MAX_DESC];
+    char produto[MAX_DESC]; 
     float preco;
     int quantidade;
 } Produto;
@@ -25,10 +25,7 @@ void listarProdutos();
 void removerProduto();
 
 void cadastrarVenda();
-void atualizarVenda();
 void listarVendas();
-void removerVenda();
-
 
 Produto buscarProdutoPorId(int id);
 int existeProduto(int id);
@@ -82,10 +79,10 @@ void cadastrarProduto() {
         return;
     }
 
-    printf("Descricao: ");
+    printf("Nome do produto: ");
     getchar(); 
-    fgets(p.descricao, MAX_DESC, stdin);
-    p.descricao[strcspn(p.descricao, "\n")] = 0; 
+    fgets(p.produto, MAX_DESC, stdin);
+    p.produto[strcspn(p.produto, "\n")] = 0;
 
     printf("Preco: ");
     scanf("%f", &p.preco);
@@ -111,25 +108,44 @@ void atualizarProduto() {
 
     Produto p;
     int achou = 0;
+
     while (fread(&p, sizeof(Produto), 1, fp)) {
         if (p.id == id) {
             achou = 1;
-            printf("Produto encontrado: %s\n", p.descricao);
+            printf("Produto encontrado: %s\n", p.produto);
 
-            printf("Nova descricao: ");
-            getchar();
-            fgets(p.descricao, MAX_DESC, stdin);
-            p.descricao[strcspn(p.descricao, "\n")] = 0;
+            int opcao;
+            printf("O que deseja atualizar?\n");
+            printf("1. Nome do produto\n");
+            printf("2. Preco\n");
+            printf("3. Quantidade em estoque\n");
+            printf("Escolha uma opcao: ");
+            scanf("%d", &opcao);
+            getchar(); 
 
-            printf("Novo preco: ");
-            scanf("%f", &p.preco);
-
-            printf("Nova quantidade: ");
-            scanf("%d", &p.quantidade);
+            switch (opcao) {
+                case 1:
+                    printf("Novo nome do produto: ");
+                    fgets(p.produto, MAX_DESC, stdin);
+                    p.produto[strcspn(p.produto, "\n")] = 0;
+                    break;
+                case 2:
+                    printf("Novo preco: ");
+                    scanf("%f", &p.preco);
+                    break;
+                case 3:
+                    printf("Nova quantidade: ");
+                    scanf("%d", &p.quantidade);
+                    break;
+                default:
+                    printf("Opcao invalida.\n");
+                    fclose(fp);
+                    return;
+            }
 
             fseek(fp, -sizeof(Produto), SEEK_CUR);
             fwrite(&p, sizeof(Produto), 1, fp);
-            printf("Produto atualizado.\n");
+            printf("Produto atualizado com sucesso.\n");
             break;
         }
     }
@@ -151,8 +167,8 @@ void listarProdutos() {
     Produto p;
     printf("\n--- Lista de Produtos ---\n");
     while (fread(&p, sizeof(Produto), 1, fp)) {
-        printf("ID: %d | Desc: %s | Preco: %.2f | Quantidade: %d\n",
-               p.id, p.descricao, p.preco, p.quantidade);
+        printf("ID: %d | Produto: %s | Preco: %.2f | Quantidade: %d\n",
+               p.id, p.produto, p.preco, p.quantidade);
     }
     fclose(fp);
 }
@@ -180,7 +196,6 @@ void removerProduto() {
     while (fread(&p, sizeof(Produto), 1, fp)) {
         if (p.id == id) {
             achou = 1;
-            
         } else {
             fwrite(&p, sizeof(Produto), 1, fp_tmp);
         }
@@ -199,8 +214,6 @@ void removerProduto() {
     rename("produto_tmp.bin", "produto.bin");
     printf("Produto removido com sucesso.\n");
 }
-
-
 
 void cadastrarVenda() {
     FILE *fp = fopen("venda.bin", "ab");
@@ -264,7 +277,7 @@ void listarVendas() {
         for (int i = 0; i < v.qtd_produtos; i++) {
             p = buscarProdutoPorId(v.produtos_ids[i]);
             if (p.id != 0)
-                printf("  - %s (ID %d)\n", p.descricao, p.id);
+                printf("  - %s (ID %d)\n", p.produto, p.id);
             else
                 printf("  - Produto ID %d nao encontrado\n", v.produtos_ids[i]);
         }
@@ -273,8 +286,6 @@ void listarVendas() {
 
     fclose(fp);
 }
-
-
 
 Produto buscarProdutoPorId(int id) {
     Produto p = {0};
@@ -290,7 +301,7 @@ Produto buscarProdutoPorId(int id) {
 
     fclose(fp);
     Produto vazio = {0};
-    return vazio; 
+    return vazio;
 }
 
 int existeProduto(int id) {
