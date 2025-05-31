@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <string.h>
-
-struct campoLivro {
+ 
+ const int MAX_LIVROS = 100;
+ 
+struct Livro {
     char titulo[100];
     char autor[100];
     char editora[50];
