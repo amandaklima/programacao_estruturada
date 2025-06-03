@@ -1,0 +1,111 @@
+Struct e Vetor de Struct
+struct é usada para agrupar diferentes tipos de dados.
+
+Vetores de struct permitem armazenar vários registros.
+
+
+Exemplo:
+
+    struct Pessoa {
+        char nome[50];
+        int idade;
+    };
+
+struct Pessoa lista[100];
+
+- Biblioteca <string.h>
+A biblioteca <string.h> permite manipular strings em C.
+Strings são vetores de char terminados por '\0'.
+
+Exemplo:
+    char nome[20] = "João";
+    printf("%s", nome);  // imprime João
+
+Funções principais:
+- strlen(str): Retorna o número de caracteres da string (sem contar \0).
+  Exemplo: int tam = strlen("Maria"); // 5
+- strcpy(dest, src): Copia src para dest.
+  Exemplo: strcpy(nome, "João");
+- strcmp(s1, s2): Compara duas strings: retorna 0 se iguais, <0 se s1 < s2, >0 se s1 > s2.
+  Exemplo: if (strcmp(a, b) == 0)
+- strcat(dest, src): Concatena src no final de dest.
+  Exemplo: strcat(frase, " mundo!");
+- strncpy(dest, src, n): Copia até n caracteres de src para dest.
+  Exemplo: strncpy(nome, "Pedro", 3);
+- strchr(str, ch): Retorna ponteiro para a primeira ocorrência de ch em str.
+  Exemplo: strchr("olá", 'l');
+
+- Métodos de Ordenação
+
+* Bubble Sort:
+        void bubbleSort(int v[], int n) {
+            for(int i = 0; i < n - 1; i++) {
+                for(int j = 0; j < n - i - 1; j++) {
+                    if(v[j] > v[j + 1]) {
+                        int temp = v[j];
+                        v[j] = v[j + 1];
+                        v[j + 1] = temp;
+                    }
+                }
+            }
+        }
+
+* Selection Sort:
+    void selectionSort(int v[], int n) {
+        for(int i = 0; i < n - 1; i++) {
+            int minIdx = i;
+            for(int j = i + 1; j < n; j++) {
+                if(v[j] < v[minIdx]) {
+                    minIdx = j;
+                }
+            }
+            int temp = v[i];
+            v[i] = v[minIdx];
+            v[minIdx] = temp;
+        }
+    }
+
+* Insertion Sort:
+    void insertionSort(int v[], int n) {
+        for (int i = 1; i < n; i++) {
+            int chave = v[i];
+            int j = i - 1;
+            while (j >= 0 && v[j] > chave) {
+                v[j + 1] = v[j];
+                j--;
+            }
+            v[j + 1] = chave;
+        }
+    }
+
+- Questões para realizar:
+
+* Questão 1 – Cadastro de Livros
+- preencherLivros: Preenche vetor de livros
+- imprimirLivros: Mostra livros formatados
+- ordenarPorAno: Ordena livros por ano (Selection Sort)
+- imprimirLivroMaisAntigo: Mostra o livro mais antigo
+- buscarLivroPorAutor: Filtra livros pelo autor
+
+* Questão 2 – Struct Aluno
+- preencherAlunos: Lê dados dos alunos
+- calcularMediaAlunos: Calcula médias
+- imprimirAprovados: Mostra alunos com média >= 7.0
+
+* Questão 3 – Cadastro de Pacientes
+- preencherPacientes: Preenche vetor
+- imprimirPacientes: Nome - Idade - Sexo
+- ordenarPorNome: Bubble Sort por nome
+- contarSexo: Conta masculino/feminino
+- filtrarMaioresIdade: Filtra maiores de 18
+
+* Questão 4 – Produtos em Estoque
+- preencherProdutos: Lê dados
+- imprimirProdutos: Nome | Qtd | Preço
+- ordenarPorPreco: Ordena por preço
+- calcularTotalEstoque: Soma total do estoque
+- buscarProduto: Busca por nome
+
+* Questão 5 – Matriz e Strings
+- preencherNomes: Lê nomes com espaço
+- ordenarNomes: Bubble Sort em nomes
