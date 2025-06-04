@@ -1,4 +1,4 @@
-repositório destinado para o desenvolvimento das atividades relacionadas a disciplina de programação estruturada
+repositório destinado para o desenvolvimento das atividades relacionadas a disciplina de programação estruturada da unicap
 
 links úteis: https://www.w3schools.com/c/c_operators.php
 
